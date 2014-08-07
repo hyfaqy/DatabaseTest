@@ -24,7 +24,9 @@ public class ContactRepositoryTest extends TestCase {
         contact.setEmail("tom@baldurtech.com");
 
         contactRepository.updateContact(contact);
-        assertEquals("UPDATE contact SET email='tom@baldurtech.com', home_address=NULL, job=NULL, job_level=NULL, memo=NULL, mobile='13900001111', name='Tom Hanks', office_address=NULL, vpmn=NULL WHERE id=1", databaseManagerMock.executeUpdateParam);
+        assertEquals("UPDATE contact SET email=?, home_address=?, job=?, job_level=?, memo=?, mobile=?, name=?, office_address=?, vpmn=? WHERE id=?", databaseManagerMock.executeUpdateParam);
+        assertEquals(new Object[]{"tom@baldurtech.com", null, null, null, null, "13900001111", "Tom Hanks", null, null, 1L}, 
+            databaseManagerMock.executeUpdateParam2);
     }
 }
 
